@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%block title%} Blogly - {{user.first_name}} edit {%endblock%}
+
+
+{%block content%}
+<h2>Edit User  {{user.first_name}}</h2>
+<form action="" method="POST">
+
+    <input type="text" name="first_name" placeholder="first name">
+
+    <input type="text" name="last_name" placeholder="last name">
+
+    <input type="text" name="img_url" placeholder="PFP img url">
+
+    <button>Submit</button>
+    <button formaction="/" formmethod="get">Return</button>
+
+
+
+</form>
+
+{%endblock%}

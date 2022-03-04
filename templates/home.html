@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%block title%} Blogly {%endblock%}
+
+{%block content%}
+<h2>Users</h2>
+
+{%for user in users%}
+{%if user.first_name%}
+<div class="userDiv"><li class="pfp"><img src="{{user.img_url}}" alt="Profile Pic" width="200px" height="150px"><p><a href="/user/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></p></li></div>
+{%endif%}
+{%endfor%}
+
+
+<form action="/create-user">
+<button class="addUserBtn">Add User</button>
+</form>
+{%endblock%}

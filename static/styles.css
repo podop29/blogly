@@ -1,0 +1,27 @@
+li {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+  }
+
+
+  .pfp{
+    height: 200px;
+    width: 200px;
+    display: inline-block;
+    align-content: center;
+    border: 2px black solid;
+    margin: 10px;
+    text-align: center;
+  }
+
+  .addUserBtn{
+    background-color: grey;
+    color: white;
+    margin-left: 2%;
+  }
+
+
+  .userInfo{
+    font-size: 25px;;
+  }
