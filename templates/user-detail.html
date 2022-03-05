@@ -10,11 +10,22 @@
     <li>First Name: {{user.first_name}}</li>
     <li>Last Name: {{user.last_name}}</li>
 </ul>
+
 <form method="POST">
     <button formaction="/user/{{user.id}}/edit" formmethod="get" >Edit</button>
     <button formaction="/user/{{user.id}}/delete" formmethod="get" >Delete</button>
     <button formaction="/" formmethod="get" >Return</button>
     
+</form>
+
+
+
+<h3>Posts</h3>
+{%for post in posts%}
+<li><a href="/user/{{user.id}}/{{post.id}}"> {{post.title}}</a></li>
+{%endfor%}
+<form action="" method="POST">
+<button formaction="/user/{{user.id}}/new-post" formmethod="get">New Post</button>
 </form>
 
 {%endblock%}

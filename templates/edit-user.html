@@ -6,11 +6,11 @@
 <h2>Edit User  {{user.first_name}}</h2>
 <form action="" method="POST">
 
-    <input type="text" name="first_name" placeholder="first name">
+    <input type="text" name="first_name" value="{{user.first_name}}" placeholder="First name">
 
-    <input type="text" name="last_name" placeholder="last name">
+    <input type="text" name="last_name" value="{{user.last_name}}" placeholder="Last name">
 
-    <input type="text" name="img_url" placeholder="PFP img url">
+    <input type="text" name="img_url" value="{{user.img_url}}" placeholder="Img Url">
 
     <button>Submit</button>
     <button formaction="/" formmethod="get">Return</button>

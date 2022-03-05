@@ -1,6 +1,6 @@
 from crypt import methods
 from flask import Flask, request, render_template, flash, redirect
-from models import db, connect_db, User
+from models import db, connect_db, User, Post
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly'
@@ -41,7 +41,8 @@ def create_user_post():
 @app.route("/user/<int:user_id>")
 def show_user(user_id):
     user = User.query.get_or_404(user_id)
-    return render_template("user-detail.html",user=user)
+    posts = Post.query.filter_by(user_id = user_id)
+    return render_template("user-detail.html",user=user, posts = posts)
 
 
 
@@ -68,6 +69,43 @@ def edit_user_post(user_id):
 @app.route("/user/<int:user_id>/delete")
 def delete_user(user_id):
     User.query.filter_by(id = user_id).delete()
+    db.session.commit()
+    
+    return redirect('/')
+
+
+
+"---New Post---"
+
+@app.route("/user/<int:user_id>/new-post")
+def new_post(user_id):
+    return render_template('new-post.html')
+
+@app.route("/user/<int:user_id>/new-post", methods=["POST"])
+def create_new_post(user_id):
+    title = request.form['title']
+    content = request.form['content']
+
+  
+    new_post = Post(title=title, content=content, user_id=user_id)
+    db.session.add(new_post)
+    db.session.commit()
+    return redirect('/')
+
+
+'----Post Details----'
+@app.route("/user/<int:user_id>/<int:post_id>")
+def post_detail(user_id, post_id):
+    user = User.query.get_or_404(user_id)
+    post = Post.query.get_or_404(post_id)
+    return render_template('post-detail.html', user = user, post = post)
+
+'----Post Delete----'
+@app.route("/user/<int:user_id>/<int:post_id>/delete")
+def post_delete(user_id, post_id):
+    post = Post.query.get_or_404(post_id)
+
+    db.session.delete(post)
     db.session.commit()
     
     return redirect('/')
